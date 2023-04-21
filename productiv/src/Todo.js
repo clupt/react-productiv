@@ -12,7 +12,7 @@ function Todo({ todo }) {
   // console.log("todo in TODOOOOO=", todo);
   return (
     <div className="Todo">
-      <div>
+      <div className="priority">
         <b>{todo.title}</b> <small>{todo.priority}</small>
       </div>
       <div>

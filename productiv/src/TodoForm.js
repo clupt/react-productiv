@@ -22,8 +22,8 @@ function TodoForm({ initialFormData = DEFAULT_FORM_DATA, handleSave }) {
   /** Update form input. */
   function handleChange(evt) {
     let { name, value } = evt.target;
-    if(name === "priority"){
-      value = parseInt(value)
+    if (name === "priority") {
+      value = parseInt(value);
     }
     setFormData((fData) => ({
       ...fData,

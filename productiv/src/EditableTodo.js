@@ -13,42 +13,45 @@ import EditableTodoList from "./EditableTodoList";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({todo, update, remove}) {
+function EditableTodo({ todo, update, remove }) {
+  let isEditing = false;
+
   /** Toggle if this is being edited */
-  function toggleEdit() { }
+  function toggleEdit() {
+    if (isEditing) {
+      isEditing = false;
+    } else {
+      isEditing = true;
+    }
+  }
 
   /** Call remove fn passed to this. */
-  function handleDelete() { }
+  function handleDelete() {}
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) { }
+  function handleSave(formData) {}
 
   return (
-      <div className="EditableTodo">
-
-                EITHER
-
-                <TodoForm formData={todo} handleSave={handleSave}/>
-
-                OR
-
-                <div className="mb-3">
-                  <div className="float-end text-sm-end">
-                    <button
-                        className="EditableTodo-toggle btn-link btn btn-sm"
-                        onClick={toggleEdit}>
-                      Edit
-                    </button>
-                    <button
-                        className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                        onClick={handleDelete}>
-                      Del
-                    </button>
-                  </div>
-                  <Todo />
-                </div>
-
+    <div className="EditableTodo">
+      isEditing? <TodoForm formData={todo} handleSave={handleSave} />:
+      <div className="mb-3">
+        <div className="float-end text-sm-end">
+          <button
+            className="EditableTodo-toggle btn-link btn btn-sm"
+            onClick={toggleEdit}
+          >
+            Edit
+          </button>
+          <button
+            className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+            onClick={handleDelete}
+          >
+            Del
+          </button>
+        </div>
+        <Todo />
       </div>
+    </div>
   );
 }
 

@@ -15,24 +15,26 @@ const DEFAULT_FORM_DATA = { title: "", description: "", priority: 1 };
 function TodoForm({ initialFormData = DEFAULT_FORM_DATA, handleSave }) {
   // const initialState = { title: "", description: "", priority: "" };
   const [formData, setFormData] = useState(initialFormData);
-  console.log("TodoForm- initialFormData", initialFormData);
+  // console.log("TodoForm- initialFormData", initialFormData);
   // console.log("TodoForm state=", formData, "title=", formData.title);
-  // console.log("TodoForm=", formData.title);
+  console.log("TodoForm=", formData);
 
   /** Update form input. */
   function handleChange(evt) {
-    const { name, value } = evt.target;
+    let { name, value } = evt.target;
+    if(name === "priority"){
+      value = parseInt(value)
+    }
     setFormData((fData) => ({
       ...fData,
       [name]: value,
     }));
-    console.log("handleChange", formData);
+    // console.log("handleChange", formData);
   }
 
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log("TodoForm SUBMIT - form data", formData);
     handleSave(formData);
     setFormData(initialFormData);
   }

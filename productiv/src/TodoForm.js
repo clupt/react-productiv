@@ -10,10 +10,13 @@ import EditableTodo from "./EditableTodo"
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({initialFormData, handleSave}) {
+const DEFAULT_FORM_DATA = {title: "", description:"", priority:1}
+
+function TodoForm({initialFormData=DEFAULT_FORM_DATA, handleSave}) {
   // const initialState = { title: "", description: "", priority: "" };
   const [formData, setFormData] = useState(initialFormData);
   // console.log("TodoForm state=", formData, "title=", formData.title);
+  console.log("TodoForm=", formData.title);
 
   /** Update form input. */
   function handleChange(evt) {

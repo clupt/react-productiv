@@ -5,6 +5,9 @@ import EditableTodoList from "./EditableTodoList";
 
 /** Show editable todo item.
  *
+ * State
+ *  - isEditing
+ *
  * Props
  * - todo
  * - update(): fn to call to update a todo
@@ -14,15 +17,13 @@ import EditableTodoList from "./EditableTodoList";
  */
 
 function EditableTodo({ todo, update, remove }) {
-  let isEditing = false;
+  const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
   function toggleEdit() {
-    if (isEditing) {
-      isEditing = false;
-    } else {
-      isEditing = true;
-    }
+    setIsEditing((edit) => !edit);
+
+    // console.log("isEditing-toggleEdit", isEditing);
   }
 
   /** Call remove fn passed to this. */
@@ -38,27 +39,27 @@ function EditableTodo({ todo, update, remove }) {
 
   return (
     <div className="EditableTodo">
-      {isEditing
-        ? <TodoForm formData={todo} handleSave={handleSave} />
-        :
-          <div className="mb-3">
-            <div className="float-end text-sm-end">
-              <button
-                className="EditableTodo-toggle btn-link btn btn-sm"
-                onClick={toggleEdit}
-              >
-                Edit
-              </button>
-              <button
-                className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                onClick={handleDelete}
-              >
-                Del
-              </button>
-            </div>
-            <Todo />
+      {isEditing ? (
+        <TodoForm initialFormData={todo} handleSave={handleSave} />
+      ) : (
+        <div className="mb-3">
+          <div className="float-end text-sm-end">
+            <button
+              className="EditableTodo-toggle btn-link btn btn-sm"
+              onClick={toggleEdit}
+            >
+              Edit
+            </button>
+            <button
+              className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+              onClick={handleDelete}
+            >
+              Del
+            </button>
           </div>
-      }
+          <Todo todo={todo} />
+        </div>
+      )}
     </div>
   );
 }

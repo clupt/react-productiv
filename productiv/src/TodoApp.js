@@ -27,6 +27,7 @@ function TodoApp({ initialTodos }) {
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
+    console.log("updatedTodo-Input", updatedTodo);
     setTodos((currentTodos) =>
       currentTodos.map((todo) =>
         todo.id === updatedTodo.id ? { ...updatedTodo } : todo
@@ -51,11 +52,10 @@ function TodoApp({ initialTodos }) {
         </div>
 
         <div className="col-md-6">
-
           {todos.length ? (
             <section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo todos={todos}/>
+              <TopTodo todos={todos} />
             </section>
           ) : null}
           <section>
